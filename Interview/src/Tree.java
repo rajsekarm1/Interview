@@ -57,19 +57,41 @@ public class Tree {
 		node60.left = node58;
 		node58.left = node57;
 		Tree tree = new Tree();
+		System.out.print("In Order Traverse:   ");
 		tree.inOrderTraverse(rootNode);
 		
+		System.out.print("\nPre Order Traverse:  ");
+		tree.preOrderTraverse(rootNode);
+		
+		System.out.print("\n Post Order Traverse:  ");
+		tree.postOrderTraverse(rootNode);
 	}
 	
-	public void inOrderTraverse(Node rootNode){
-		
+	public void inOrderTraverse(Node rootNode){		
 		if(rootNode==null){
 			return;
 		}
 		inOrderTraverse(rootNode.left);
-		System.out.println(rootNode.value);
-		inOrderTraverse(rootNode.right);
-		
+		System.out.print(rootNode.value+"   ,   ");
+		inOrderTraverse(rootNode.right);		
+	}
+	
+	public void preOrderTraverse(Node rootNode){
+		if(rootNode==null){
+			return;
+		}
+		System.out.print(rootNode.value+ "    ,  ");
+		preOrderTraverse(rootNode.left);
+		preOrderTraverse(rootNode.right);
+	}
+	
+	public void postOrderTraverse(Node rootNode){
+		if(rootNode==null){
+			return;
+		}
+		postOrderTraverse(rootNode.left);
+		postOrderTraverse(rootNode.right);
+		System.out.print(rootNode.value+ "    ,  ");
 	}
 
 }
