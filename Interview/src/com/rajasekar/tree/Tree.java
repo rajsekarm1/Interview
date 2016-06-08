@@ -1,3 +1,8 @@
+package com.rajasekar.tree;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Tree {
 	
@@ -65,8 +70,26 @@ public class Tree {
 		
 		System.out.print("\n Post Order Traverse:  ");
 		tree.postOrderTraverse(rootNode);
+		List<Node> listTree = new LinkedList<>();
+		listTree.add(rootNode);
+		System.out.print("\n Tree Width Traverse:  ");
+		tree.treeWidthTraverse(listTree);
 	}
 	
+	private void treeWidthTraverse(List<Node> listTree) {
+		
+		while(!listTree.isEmpty()){
+			Node node = listTree.remove(0);
+			System.out.print(node.value+"   ,   ");
+			if(node.left!=null)
+				listTree.add(node.left);
+			if(node.right!=null)
+				listTree.add(node.right);
+		}
+		
+		
+	}
+
 	public void inOrderTraverse(Node rootNode){		
 		if(rootNode==null){
 			return;
