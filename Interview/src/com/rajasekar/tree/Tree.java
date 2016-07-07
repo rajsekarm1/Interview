@@ -3,6 +3,7 @@ package com.rajasekar.tree;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 
 public class Tree {
 	
@@ -40,6 +41,9 @@ public class Tree {
 		}
 		Node left;
 		Node right;
+		public String toString(){
+			return "Node Value:"+value;
+		}
 	}
 
 	public static void main(String[] args) {
@@ -62,7 +66,7 @@ public class Tree {
 		node60.left = node58;
 		node58.left = node57;
 		Tree tree = new Tree();
-		System.out.print("In Order Traverse:   ");
+		/*System.out.print("In Order Traverse:   ");
 		tree.inOrderTraverse(rootNode);
 		
 		System.out.print("\nPre Order Traverse:  ");
@@ -73,9 +77,77 @@ public class Tree {
 		List<Node> listTree = new LinkedList<>();
 		listTree.add(rootNode);
 		System.out.print("\n Tree Width Traverse:  ");
-		tree.treeWidthTraverse(listTree);
+		tree.treeWidthTraverse(listTree);*/
+		/*System.out.println("Height of the tree:");
+		tree.printHeightOfTree(rootNode);
+		
+		System.out.println("Size of the tree:"+tree.printsizeofTree(rootNode));*/
+		
+		tree.printMirrorTree(rootNode);
+		System.out.println("the tree mirror:"+rootNode);
+		System.out.println("Print each root to leaf path:");
+		tree.printRootToLeafPath(rootNode);
 	}
 	
+	private Stack<Node> nodeStack = new Stack<Node>();
+	private void printRootToLeafPath(Node rootNode){
+		if(rootNode==null){
+			return ;
+		}
+		nodeStack.push(rootNode);
+		if(rootNode.left==null && rootNode.right==null){
+			System.out.println(nodeStack);
+			nodeStack.pop();
+			return;
+		}		
+		printRootToLeafPath(rootNode.left);
+		printRootToLeafPath(rootNode.right);
+		
+		
+	}
+	
+	private void printMirrorTree(Node rootNode) {
+		if(rootNode==null){
+			return;
+		}
+		printMirrorTree(rootNode.left);
+		printMirrorTree(rootNode.right);
+		Node temp = rootNode.left;
+		rootNode.left = rootNode.right;
+		rootNode.right=temp;
+		
+	}
+
+	private int printsizeofTree(Node rootNode) {
+		if(rootNode==null)
+			return 0;
+		else
+			return printsizeofTree(rootNode.left) + 1 + printsizeofTree(rootNode.right);
+		
+	}
+
+	private void printHeightOfTree(Node rootNode) {
+		List<Node> levelList = new LinkedList<Node>();
+		List<Node> tempList = new LinkedList<Node>();
+		levelList.add(rootNode);
+		int heightCounter = 0;
+		while(levelList.size()>0){
+			tempList = new LinkedList<Node>();
+			heightCounter++;
+			
+			while(levelList.size()>0){
+				Node tempNode = levelList.remove(0);
+				if(tempNode.left!=null){
+					tempList.add(tempNode.left);
+				}
+				if(tempNode.right!=null){
+					tempList.add(tempNode.right);
+				}
+			}
+			levelList.addAll(tempList);
+		}
+	}
+
 	private void treeWidthTraverse(List<Node> listTree) {
 		
 		while(!listTree.isEmpty()){
