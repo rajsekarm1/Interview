@@ -7,7 +7,7 @@ import java.util.List;
  * Created by Navdeep on 18-02-2016.
  */
 public class AdjacencySetGraph implements Graph {
-    private List<Node> vertexList = new ArrayList<>() ;
+    /*private List<Node> vertexList = new ArrayList<>() ;
     private GraphType graphType = GraphType.DIRECTED;
     private int numVertices =0;
 
@@ -71,4 +71,4 @@ public class AdjacencySetGraph implements Graph {
     public int getNumVertices() {
         return numVertices;
     }
-}
+*/}

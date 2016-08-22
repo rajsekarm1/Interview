@@ -83,10 +83,12 @@ public class Tree {
 		
 		System.out.println("Size of the tree:"+tree.printsizeofTree(rootNode));*/
 		
-		tree.printMirrorTree(rootNode);
+		/*tree.printMirrorTree(rootNode);
 		System.out.println("the tree mirror:"+rootNode);
 		System.out.println("Print each root to leaf path:");
-		tree.printRootToLeafPath(rootNode);
+		tree.printRootToLeafPath(rootNode);*/
+		System.out.println(tree.heightOfTree(rootNode));
+		System.out.println(tree.printHeightOfTree(rootNode));
 	}
 	
 	private Stack<Node> nodeStack = new Stack<Node>();
@@ -126,7 +128,7 @@ public class Tree {
 		
 	}
 
-	private void printHeightOfTree(Node rootNode) {
+	private int printHeightOfTree(Node rootNode) {
 		List<Node> levelList = new LinkedList<Node>();
 		List<Node> tempList = new LinkedList<Node>();
 		levelList.add(rootNode);
@@ -146,6 +148,14 @@ public class Tree {
 			}
 			levelList.addAll(tempList);
 		}
+		return heightCounter;
+	}
+	
+	private int heightOfTree(Node rootNode){
+		if(rootNode==null){
+			return 0;
+		}
+		return 1+ Math.max(heightOfTree(rootNode.left), heightOfTree(rootNode.right));
 	}
 
 	private void treeWidthTraverse(List<Node> listTree) {
