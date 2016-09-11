@@ -7,7 +7,7 @@ public class MergeSort {
 	static int tempArray[] = new int[array.length];
 
 	public static void main(String[] args) {
-		int middle = array.length/2+1;
+		
 		mergeSort(0,array.length-1);
 		for(int i=0;i<array.length;i++){
 			System.out.println(array[i]);
@@ -19,10 +19,12 @@ public class MergeSort {
 	
 	public static void mergeSort(int startIndex, int endIndex){
 		if(startIndex<endIndex){
+			//int middleIndex = startIndex + (endIndex-startIndex)/2;
 			int middleIndex = startIndex + (endIndex-startIndex)/2;
+			System.out.println("The middle element:"+middleIndex);
 			mergeSort(startIndex,middleIndex);
 			mergeSort(middleIndex+1,endIndex);
-			merge(startIndex,middleIndex,endIndex);
+			/*merge(startIndex,middleIndex,endIndex);*/
 		}		
 	}
 	
