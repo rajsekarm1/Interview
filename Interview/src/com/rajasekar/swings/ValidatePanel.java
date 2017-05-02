@@ -4,6 +4,7 @@ import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.ScrollPane;
+import java.time.LocalTime;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
@@ -43,7 +44,8 @@ public class ValidatePanel extends JFrame{
 	    	rightSidePanel.removeAll();
 	    	rightSidePanel.revalidate();
 	    	rightSidePanel.repaint();
-	    	rightSidePanel.add(new JLabel("Rajasekar"));
+	    	LocalTime currentTime = LocalTime.now();
+	    	rightSidePanel.add(new JLabel("Rajasekar"+currentTime.toString()));
 		});
 	    list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	    list.setSelectedIndex(0);
