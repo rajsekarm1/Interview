@@ -1,16 +1,16 @@
-package com.rajasekar.desingpattern.singleton;
+package com.rajasekar.designpattern.singleton;
 
 public class SingleTonPatternExample {
 	
-	private static volatile SingleTonPatternExample _instance = null;
+	private static SingleTonPatternExample _instance = null;
 	
 	private SingleTonPatternExample(){
-		try {
+		/*try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 	}
 	
 	public static SingleTonPatternExample getInstance(){

@@ -1,4 +1,4 @@
-package com.rajasekar.desingpattern.singleton;
+package com.rajasekar.designpattern.singleton;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -21,8 +21,8 @@ public class SingleTonPatternExampleTestCase{
 	@Test
 	public void testSingleTonInstance(){
 		
-		final ExecutorService executor = Executors.newFixedThreadPool(5);
-		List<Future<SingleTonPatternExample>> futureList = IntStream.rangeClosed(1,10).mapToObj(data -> {
+		final ExecutorService executor = Executors.newFixedThreadPool(100);
+		List<Future<SingleTonPatternExample>> futureList = IntStream.rangeClosed(1,100).mapToObj(data -> {
 				Future<SingleTonPatternExample> future = executor.submit(() -> SingleTonPatternExample.getInstance());
 				return future;
 		}).collect(Collectors.toList());
@@ -52,6 +52,6 @@ public class SingleTonPatternExampleTestCase{
 					e.printStackTrace();
 				}
 			});
-		
+			executor.shutdown();
 	}
 }
