@@ -23,10 +23,15 @@ public class MaxmimumStackValue<T> {
 		stackValue.push(2);
 		stackValue.push(7);
 		stackValue.printNode();
+		System.out.println("the head node value"+stackValue.maxNode.value);
 		stackValue.pop();
+		System.out.println("the head node value"+stackValue.maxNode.value);
 		stackValue.printNode();
 		stackValue.pop();
+		System.out.println("the head node value"+stackValue.headNode.value);
 		stackValue.printNode();
+		stackValue.pop();
+		System.out.println("the head node value"+stackValue.headNode.value);
 
 	}
 	
