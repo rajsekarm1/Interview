@@ -1,4 +1,4 @@
-package com.rajasekar.collections;
+package com.rajasekar.puzzle;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -26,18 +26,8 @@ public class KthOccuranceOfString {
 		String [] strArray = wholeString.split("\\s+");
 		Stream<String> stringStream = Arrays.stream(strArray);
 		Map<String,Integer> map = stringStream.collect(Collectors.toMap(Function.identity(), data -> new Integer(1), (x,y) -> x + 1));
-//		Map<String,Integer> map = new HashMap<String,Integer>();
-//		stringStream.forEach( string -> {
-//			if(map.get(string)==null){
-//				map.put(string, 1);
-//			}
-//			else{
-//				Integer i = map.get(string);
-//				map.put(string,++i);
-//			}
-//		});
-		System.out.println(map)
-;		return map;
+		System.out.println(map);
+		return map;
 	}
 
 }
