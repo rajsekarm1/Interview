@@ -8,7 +8,7 @@ public class IntStreamExample {
 		// TODO Auto-generated method stub
 		
 		IntStream.of(1,2,4,5).forEach(System.out::println);
-
+		IntStream.rangent(0, 7).forEach(System.out::println);
 	}
 
 }
