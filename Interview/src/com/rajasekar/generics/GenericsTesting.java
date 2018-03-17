@@ -7,16 +7,39 @@ import java.util.List;
 public class GenericsTesting {
 
 	public static void main(String[] args) {
-		List <? super GenericProfile> profile = new ArrayList<>();
-		addGenericMethod(profile, new Specific1Profile(1, "raja", "first name"));
-		printGenericMethod((Collection<? extends GenericProfile>) profile);
-		List <? super GenericProfile> myList = new ArrayList();
-		myList.add(new Specific1Profile(1, "rama", "second name"));
+		printProfile(new Specific1Profile(0,"specific","specificProperty"));
+		printProfile(new GenericProfile(0,"specific"));
+		addNumbers(new ArrayList<Number>());
+		ArrayList<Number> numList = new ArrayList<>();
+		numList.add(new Integer(1));
 	}
 	
 	
+	//UnBounded Generics example
+	public static <T> void printProfile(T profile){
+		
+	}
+	
+	 public static <T> void exchange(T[] array, int src, int dest){
+		 
+	 }
+	 
+	//Upper Bounded Generics
+	public static <T extends GenericProfile> void printProfile(T profile){
+		
+	}
+	
+	//Lower Bound Generics
+	public static void addNumbers(List<? super Integer> list) {
+	    for (int i = 1; i <= 10; i++) {
+	        list.add(i);
+	    }
+	}
+	
+	
+	
 	public static void printMethod(List<?> testignList){
-		String obj = testignList.get(0);
+		//String obj = testignList.get(0);
 		
 	}
 	
