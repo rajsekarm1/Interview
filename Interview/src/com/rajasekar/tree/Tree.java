@@ -5,46 +5,47 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
+class Node{
+	
+	public Node(int value){
+		super();
+		this.value = value;
+	}
+	public Node(int value, Node left, Node right) {
+		super();
+		this.value = value;
+		this.left = left;
+		this.right = right;
+	}
+	int value;
+	public int getValue() {
+		return value;
+	}
+	public void setValue(int value) {
+		this.value = value;
+	}
+	public Node getLeft() {
+		return left;
+	}
+	public void setLeft(Node left) {
+		this.left = left;
+	}
+	public Node getRight() {
+		return right;
+	}
+	public void setRight(Node right) {
+		this.right = right;
+	}
+	Node left;
+	Node right;
+	public String toString(){
+		return "Node Value:"+value;
+	}
+}
 public class Tree {
 	
 	
-	static class Node{
-		
-		public Node(int value){
-			super();
-			this.value = value;
-		}
-		public Node(int value, Node left, Node right) {
-			super();
-			this.value = value;
-			this.left = left;
-			this.right = right;
-		}
-		int value;
-		public int getValue() {
-			return value;
-		}
-		public void setValue(int value) {
-			this.value = value;
-		}
-		public Node getLeft() {
-			return left;
-		}
-		public void setLeft(Node left) {
-			this.left = left;
-		}
-		public Node getRight() {
-			return right;
-		}
-		public void setRight(Node right) {
-			this.right = right;
-		}
-		Node left;
-		Node right;
-		public String toString(){
-			return "Node Value:"+value;
-		}
-	}
+	 
 
 	public static void main(String[] args) {
 		
@@ -66,13 +67,21 @@ public class Tree {
 		node60.left = node58;
 		node58.left = node57;
 		Tree tree = new Tree();
-		/*System.out.print("In Order Traverse:   ");
-		tree.inOrderTraverse(rootNode);
-		
-		System.out.print("\nPre Order Traverse:  ");
-		tree.preOrderTraverse(rootNode);
-		
-		System.out.print("\n Post Order Traverse:  ");
+		BTreePrinter.printNode(rootNode);
+//		List<Integer> list = new ArrayList<>();
+//		System.out.println(tree.sumBinaryTreeFromRootToLeaf(rootNode, 141,list));
+//		System.out.println(list);
+		System.out.println(tree.isBinarySearchTree(rootNode.value, rootNode.left, rootNode.right));
+//		System.out.print("In Order Traverse:   ");
+//		tree.inOrderTraverse(rootNode);
+//		
+//		System.out.print("\nPre Order Traverse:  ");
+//		tree.preOrderTraverse(rootNode);
+//		
+//		System.out.println("\n Mirror Tree:    ");
+//		tree.mirrorTree(rootNode);
+//		tree.preOrderTraverse(rootNode);
+		/*System.out.print("\n Post Order Traverse:  ");
 		tree.postOrderTraverse(rootNode);
 		List<Node> listTree = new LinkedList<>();
 		listTree.add(rootNode);
@@ -82,14 +91,85 @@ public class Tree {
 		tree.printHeightOfTree(rootNode);
 		
 		System.out.println("Size of the tree:"+tree.printsizeofTree(rootNode));*/
-		
-		/*tree.printMirrorTree(rootNode);
-		System.out.println("the tree mirror:"+rootNode);
+//		
+//		tree.printMirrorTree(rootNode);
+//		
+//		BTreePrinter.printNode(rootNode);
+		/*System.out.println("the tree mirror:"+rootNode);
 		System.out.println("Print each root to leaf path:");
-		tree.printRootToLeafPath(rootNode);*/
+		tree.printRootToLeafPath(rootNode);
 		System.out.println(tree.heightOfTree(rootNode));
-		System.out.println(tree.printHeightOfTree(rootNode));
+		System.out.println(tree.printHeightOfTree(rootNode));*/
+		
 	}
+	
+	private boolean isBinarySearchTree(int data, Node leftNode, Node rightNode){
+		
+		boolean isRightValid = checkRightNode(data,rightNode);
+		boolean isLeftValid = checkLeftNode(data,leftNode);
+		if(isRightValid && isLeftValid){
+			if(rightNode!=null){
+				return isBinarySearchTree (rightNode.value,rightNode.left,rightNode.right);
+			}
+			if(leftNode!=null){
+				return isBinarySearchTree (leftNode.value,leftNode.left,leftNode.right);
+			}
+			return true;
+		}else{
+			return false;
+		}
+		
+	}
+	
+	private boolean checkRightNode(int data, Node rightNode){
+		if(rightNode==null)
+			return true;
+		if(rightNode.value>data)
+			return true;
+		else
+			return false;
+	}
+	
+	private boolean checkLeftNode(int data, Node leftNode){
+		if(leftNode==null)
+			return true;
+		if(leftNode.value<data)
+			return true;
+		else
+			return false;
+	}
+	
+	
+	private boolean sumBinaryTreeFromRootToLeaf(Node node, int sum, List<Integer> list){
+		if(node == null) return false;
+		sum -= node.value;
+		if(sum==0){
+			if(node.right==null && node.left==null){
+				list.add(node.getValue());
+				return true;
+			}else{
+				return false;
+			}
+		}
+		boolean value = sumBinaryTreeFromRootToLeaf(node.left,sum,list);
+		if(value) {
+			list.add(node.getValue());
+			return true;
+		}
+		else{
+			value = sumBinaryTreeFromRootToLeaf(node.right, sum,list);
+			if(value){
+				list.add(node.getValue());
+				return true;
+			}
+			else{
+				return false;
+			}
+			
+		}
+	}
+	
+	
 	
 	private Stack<Node> nodeStack = new Stack<Node>();
 	private void printRootToLeafPath(Node rootNode){
@@ -156,6 +236,17 @@ public class Tree {
 			return 0;
 		}
 		return 1+ Math.max(heightOfTree(rootNode.left), heightOfTree(rootNode.right));
+	}
+	
+	private void mirrorTree(Node node){
+		if(node == null){
+			return;
+		}
+		Node tmp = node.left;
+		node.left=node.right;
+		node.right=tmp;
+		mirrorTree(node.left);
+		mirrorTree(node.right);
 	}
 
 	private void treeWidthTraverse(List<Node> listTree) {

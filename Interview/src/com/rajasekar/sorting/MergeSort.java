@@ -24,7 +24,7 @@ public class MergeSort {
 			System.out.println("The middle element:"+middleIndex);
 			mergeSort(startIndex,middleIndex);
 			mergeSort(middleIndex+1,endIndex);
-			/*merge(startIndex,middleIndex,endIndex);*/
+			merge(startIndex,middleIndex,endIndex);
 		}		
 	}
 	
