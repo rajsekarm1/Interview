@@ -49,8 +49,10 @@ public class CyclicBarrierExample {
 			}
 			Thread t = new Thread(new BarrierLogic(barrier));
 			t.setName(i+"-- Thread");
+			
 			t.start();
 		}
+		System.out.println("main Thread");
 	}
 
 }
